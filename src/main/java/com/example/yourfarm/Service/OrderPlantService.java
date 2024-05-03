@@ -42,7 +42,9 @@ public class OrderPlantService {
         // Farm farm=farmRepository.findFarmById(farmId);
         //@Pattern(regexp ="^(Delivered|Ready to deliver|waiting|accepted|Rejected)$")
 
-
+        if (orderPlant.getStatus().equalsIgnoreCase("Delivered")) {
+            throw new ApiException("orderPlan is already Delivered");
+        }
         if (orderPlant.getStatus().equalsIgnoreCase("Rejected")) {
             throw new ApiException("orderPlant is rejected can not changed");
         }
@@ -57,7 +59,6 @@ public class OrderPlantService {
         }
         orderPlantRepository.save(orderPlant);
     }
-
     //reject order 2
 
 
